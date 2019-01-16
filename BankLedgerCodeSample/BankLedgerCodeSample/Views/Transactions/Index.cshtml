@@ -1,0 +1,49 @@
+﻿@model IEnumerable<BankLedgerCodeSample.Models.Transaction>
+
+@{
+    ViewBag.Title = "Your Account";
+    decimal totalAmount;
+    if (Model != null)
+    {
+        totalAmount = Model.Sum(x => x.TransAmount);
+    }
+    else { totalAmount = 0;}
+}
+
+<h2>Current Balance: $ @totalAmount</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>Date</th>
+        <th>Amount</th>
+        <th>Description</th>
+        <th>Memo</th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TransDate)
+        </td>
+        <td>
+            $ @Html.DisplayFor(modelItem => item.TransAmount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Source)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Memo)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>
