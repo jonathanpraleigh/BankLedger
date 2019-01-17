@@ -1,2 +1,2 @@
 # BankLedger
-Web App - ASP.NET
+Web App - ASP.NET project.
